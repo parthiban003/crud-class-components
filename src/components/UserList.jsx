@@ -15,7 +15,7 @@ export default class UserList extends Component {
   componentDidMount() {
     const usersRef = collection(db, "users");
 
-    // Real-time updates
+
     this.unsubscribe = onSnapshot(usersRef, (snapshot) => {
       const users = snapshot.docs.map((doc) => ({
         ...doc.data(),
@@ -37,10 +37,11 @@ export default class UserList extends Component {
     return (
       <div className="container mt-4">
         <h3>User List</h3>
-        <table className="table table-striped table-bordered">
+        <table className="table table-striped table-bordered table-responsive">
           <thead className="table-dark">
             <tr>
               <th>Name</th>
+              <th>Age</th>
               <th>Email</th>
               <th style={{ width: "150px" }}>Actions</th>
             </tr>
@@ -56,6 +57,7 @@ export default class UserList extends Component {
               this.state.users.map((user) => (
                 <tr key={user.id}>
                   <td>{user.name}</td>
+                  <td>{user.age}</td>
                   <td>{user.email}</td>
                   <td>
                     <button

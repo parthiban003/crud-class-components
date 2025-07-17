@@ -7,6 +7,7 @@ export default class UserForm extends Component {
     super(props);
     this.state = {
       name: "",
+      age: "",
       email: "",
       id: null,
     };
@@ -16,6 +17,7 @@ export default class UserForm extends Component {
     if (this.props.editUser && this.props.editUser.id !== prevProps.editUser?.id) {
       this.setState({
         name: this.props.editUser.name,
+        age: this.props.editUser.age,
         email: this.props.editUser.email,
         id: this.props.editUser.id,
       });
@@ -30,16 +32,18 @@ export default class UserForm extends Component {
       const userDoc = doc(db, "users", this.state.id);
       await updateDoc(userDoc, {
         name: this.state.name,
+        age: this.state.age,
         email: this.state.email,
       });
     } else {
       await addDoc(usersCollection, {
         name: this.state.name,
+        age: this.state.age,
         email: this.state.email,
       });
     }
 
-    this.setState({ name: "", email: "", id: null });
+    this.setState({ name: "", age: "", email: "", id: null });
     this.props.onSuccess(); 
   };
 
@@ -47,10 +51,12 @@ export default class UserForm extends Component {
 
   render() {
     return (
-      <div className="container mt-4">
+      <div className="container mt-4 bg-light rounded" style={{ maxWidth: "500px", margin: "20px auto" }}
+>
         <h3>{this.state.id ? "Update" : "Add"} User</h3>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} autoComplete="off">
           <input
+          type="text"
             className="form-control mb-2"
             name="name"
             placeholder="Name"
@@ -58,7 +64,16 @@ export default class UserForm extends Component {
             onChange={this.handleChange}
             required
           />
+          <input type="number" 
+          name="age"
+          className="form-control mb-2"
+          placeholder="Age"
+          value={this.state.age}
+          onChange={this.handleChange}
+          required
+          />
           <input
+          type="email"
             className="form-control mb-2"
             name="email"
             placeholder="Email"
@@ -66,9 +81,9 @@ export default class UserForm extends Component {
             onChange={this.handleChange}
             required
           />
-          <button className="btn btn-primary" type="submit">
+          <button className="btn btn-primary fw-bold" type="submit">
             {this.state.id ? "Update" : "Add"}
-          </button>
+          </button><br /><br />
         </form>
       </div>
     );
