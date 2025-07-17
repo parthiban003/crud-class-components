@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "name": "Parthiban",
+      "age": "22",
+      "email": "parthiban2912003@gmail.com",
+      "id": "2849"
+    },
+    {
+      "id": "6a67",
+      "name": "prakash",
+      "age": "25",
+      "email": "prakash7@gmail.com"
+    }
+  ]
+}
