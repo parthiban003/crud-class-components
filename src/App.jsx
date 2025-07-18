@@ -6,6 +6,7 @@ export default class UserPage extends Component {
   state = {
     selectedUser: null,
   };
+  
 
   handleEdit = (user) => {
     this.setState({ selectedUser: user });

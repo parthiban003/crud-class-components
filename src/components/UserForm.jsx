@@ -24,6 +24,7 @@ export default class UserForm extends Component {
     }
   }
 
+
   handleSubmit = async (e) => {
     e.preventDefault();
     const usersCollection = collection(db, "users");
@@ -52,8 +53,9 @@ export default class UserForm extends Component {
   render() {
     return (
       <div className="container mt-4 bg-light rounded" style={{ maxWidth: "500px", margin: "20px auto" }}
->
-        <h3>{this.state.id ? "Update" : "Add"} User</h3>
+>       
+         <h2>CRUD in Class Components</h2>
+        <h3 className="text-primary">{this.state.id ? "Update" : "Add"} User</h3>
         <form onSubmit={this.handleSubmit} autoComplete="off">
           <input
           type="text"

@@ -22,7 +22,7 @@ export default class UserList extends Component {
         id: doc.id,
       }));
       this.setState({ users });
-    });
+    }); 
   }
 
   componentWillUnmount() {
@@ -40,6 +40,7 @@ export default class UserList extends Component {
         <table className="table table-striped table-bordered table-responsive">
           <thead className="table-dark">
             <tr>
+              <th>S No</th>
               <th>Name</th>
               <th>Age</th>
               <th>Email</th>
@@ -54,8 +55,9 @@ export default class UserList extends Component {
                 </td>
               </tr>
             ) : (
-              this.state.users.map((user) => (
+              this.state.users.map((user, index) => (
                 <tr key={user.id}>
+                  <td>{index + 1}</td>
                   <td>{user.name}</td>
                   <td>{user.age}</td>
                   <td>{user.email}</td>
